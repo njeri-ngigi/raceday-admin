@@ -1,0 +1,12 @@
+# TODO
+
+- Login page with auth logic only as admin [DONE]
+- Home page with the navigation bar and 3 routes
+- Fetch events
+- Display the events
+- Create events
+- Edit events
+- Delete events
+- Create car
+- Add crew
+- Upgrade user roles
