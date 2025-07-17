@@ -1,12 +1,16 @@
-import { useAppSelector } from "../hooks/useAppSelector";
+import { useAuth } from "../hooks/useAuth";
 import "./ProtectedLayout.css";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 
 const ProtectedLayout = () => {
-  const user = useAppSelector((state) => state.auth.user);
+  const { isAuthenticated, isAuthLoading } = useAuth();
   const location = useLocation();
 
-  if (!user) {
+  if (isAuthLoading) {
+    return <></>;
+  }
+
+  if (!isAuthenticated) {
     return <Navigate to="/login" replace state={{ from: location }} />;
   }
 

@@ -1,21 +1,65 @@
+import "./Auth.css";
 import { useNavigate } from "react-router-dom";
-import { useAppSelector } from "../../hooks/useAppSelector";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useAuth } from "../../hooks/useAuth";
+import { useLoginMutation } from "../../services/api";
 
 export default function Auth() {
-  const user = useAppSelector((state) => state.auth.user);
   const navigate = useNavigate();
+  const [formData, setFormData] = useState({ password: "", email: "" });
+  const [loginUser, { isLoading, error }] = useLoginMutation();
+  const { isAuthenticated, setToken } = useAuth();
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const res = await loginUser(formData).unwrap();
+      setToken(res.accessToken);
+    } catch (err) {
+      console.error("Failed to login user", err);
+    }
+  };
 
   useEffect(() => {
-    if (user) {
+    if (isAuthenticated) {
       navigate("/", { replace: true });
     }
-  }, [user, navigate]);
+  }, [isAuthenticated, navigate]);
 
   return (
-    <div>
-      <h1>Login Page</h1>
-      <p>Please enter your credentials to log in.</p>
+    <div className="container">
+      <h2>RACE DAY ADMIN</h2>
+      <form onSubmit={handleLogin}>
+        <div className="errorContainer">
+          {/* TODO find a way to circumvent this ts error */}
+          {error?.data?.message && (
+            <p className="error">Error: {error?.data?.message}</p>
+          )}
+        </div>
+        <input
+          onChange={handleChange}
+          type="email"
+          name="email"
+          placeholder="Email"
+          title="Email"
+          required
+        />
+        <input
+          onChange={handleChange}
+          type="password"
+          name="password"
+          placeholder="Password"
+          title="Password"
+          required
+        />
+        <button type="submit" disabled={isLoading}>
+          LOGIN
+        </button>
+      </form>
     </div>
   );
 }
