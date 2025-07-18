@@ -1,0 +1,26 @@
+.events-layout {
+  padding: 32px 64px;
+}
+.create-event-btn {
+  background-color: #d9d9d9;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  border: none;
+  padding: 8px 24px;
+  border-radius: 20px;
+  font-family: 'Monaco', monospace;
+  font-size: 0.865rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in;
+  width: 320px;
+}
+.events-layout .create-event-btn:hover {
+  background-color: #FFC600;
+}
+.events-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 75vh;
+}

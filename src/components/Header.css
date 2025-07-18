@@ -1,0 +1,60 @@
+.header {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  gap: 20px;
+  border-bottom: 1px solid #ccc;
+  font-family: 'Monaco', sans-serif;
+}
+.tab {
+  text-decoration: none;
+  color: #333;
+  border-bottom: transparent 2px solid;
+  font-size: 1.35rem;
+}
+.tab:hover {
+  border-bottom: #333 2px solid;
+}
+.tab.active {
+  border-bottom: #FFC600 2px solid;
+}
+.site-title {
+  font-size: 0.875rem;
+  margin-right: 32px;
+  margin-left: 12px;
+}
+.header button {
+  margin-left: auto;
+  font-size: 0.875rem;
+  background-color: unset;
+  border: none;
+  font-family: 'Monaco', monospace;
+}
+.header button:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* Events Header Styles */
+.events-header {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  gap: 18px;
+  font-family: 'Monaco', sans-serif;
+}
+.events-tab {
+  text-decoration: none;
+  color: #333;
+  border-bottom: transparent 2px solid;
+  font-size: 0.875rem;
+  padding: 8px;
+}
+.events-tab:hover {
+  border-bottom: #333 2px solid;
+}
+.events-tab.events-active {
+  background-color: #757575;
+  color: white;
+  border-bottom: #FFC600 2px solid;
+}
